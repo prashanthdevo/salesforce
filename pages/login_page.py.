@@ -1,0 +1,17 @@
+from playwright.sync_api import Page
+
+class SalesforceLoginPage:
+    def __init__(self, page: Page):
+        self.page = page
+        # Using stable Salesforce IDs
+        self.username_input = page.locator("#username")
+        self.password_input = page.locator("#password")
+        self.login_button = page.locator("#Login")
+
+    def navigate(self):
+        self.page.goto("https://login.salesforce.com/")
+
+    def login(self, username, password):
+        self.username_input.fill(username)
+        self.password_input.fill(password)
+        self.login_button.click()
